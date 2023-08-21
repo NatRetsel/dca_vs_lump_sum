@@ -1,11 +1,15 @@
 import pandas as pd
-from investments.methods import DCA
+from investments.methods import DCA, lumpSum
 pd.options.mode.chained_assignment = None 
 
 
 if __name__ == '__main__':
     hist_data = pd.read_csv("Data/SPY (1).csv", header=[0])
-    dca_10k = DCA(1000000, hist_data, 30,'fractional', 100)
-    dca_10k.simulate()
-    dca_10k.plot_pnl()
-    
+    dca_1m = DCA(1000000, hist_data, 30,'fractional', 100)
+    dca_1m.simulate()
+    dca_1m.plot_pnl()
+    lump_sum_1m = lumpSum(1000000, hist_data, 'fractional')
+    lump_sum_1m.simulate()
+    lump_sum_1m.plot_pnl()
+    print(dca_1m.hist_data.head())
+    print(lump_sum_1m.hist_data.head())
